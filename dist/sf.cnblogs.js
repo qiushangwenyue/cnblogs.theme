@@ -4,6 +4,7 @@
 
     var element = {
         body: document.body,
+		main: "main"
         postTitle: "cb_post_title_url",
         postBody: "cnblogs_post_body",
         postCategory: "BlogPostCategory",
@@ -126,28 +127,28 @@
     }
 
     function toggleTableOfContentsCore() {
-        var $body = $(element.body);
+        var $main = $(element.main);
         var $toc = $id(element.toc);
 
         if ($toc.length === 0) {
             var tocHtml = buildTableOfContentsHtmlCore();
             if (tocHtml) {
-                $body.append(tocHtml);
+                $main.append(tocHtml);
                 $toc = $id(element.toc);
             }
             if ($toc) {
-                show($toc, $body);
+                show($toc, $main);
             }
             return;
         }
 
         if ($toc.css("display") === "none") {
-            show($toc, $body);
+            show($toc, $main);
         } else {
-            hide($toc, $body);
+            hide($toc, $main);
         }
 
-        function show($toc, $body) {
+        function show($toc, $main) {
             var width = $toc.width();
             if (width > 230) {
                 width = 230;

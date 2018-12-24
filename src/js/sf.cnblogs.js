@@ -4,6 +4,7 @@
 
     var element = {
         body: document.body,
+		main: "main"
         postTitle: "cb_post_title_url",
         postBody: "cnblogs_post_body",
         postCategory: "BlogPostCategory",
@@ -23,7 +24,7 @@
         fixedBar.push('<div class="fixed-bar">');
 
         if ($id(element.postBody).length) {
-            fixedBar.push('<a class="item toc" href="javascript:lnh.toc.toggle();" title="目录"><i class="fa fa-hashtag"></i></a>');
+            fixedBar.push('<a class="item toc" href="javascript:sf.toc.toggle();" title="目录"><i class="fa fa-hashtag"></i></a>');
             fixedBar.push('<a class="item comments" href="#comment_form_container" title="评论列表"><i class="fa fa-comments"></i></a>');
             fixedBar.push('<a class="item comment" href="#comment_form" title="写评论"><i class="fa fa-pencil"></i></a>');
         }
@@ -102,7 +103,7 @@
         var tableOfContentsHtml = [];
 
         if (headerList.length) {
-            tableOfContentsHtml.push('<div id="' + element.toc + '" class="lnh_toc_warp">');
+            tableOfContentsHtml.push('<div id="' + element.toc + '" class="sf_toc_warp">');
             tableOfContentsHtml.push('<div class="title"># ' + getPostTitleCore() + '</div>');
             tableOfContentsHtml.push('<div class="toc">');
             for (var i = 0; i < headerList.length; i++) {
@@ -126,39 +127,39 @@
     }
 
     function toggleTableOfContentsCore() {
-        var $body = $(element.body);
+        var $main = $(element.main);
         var $toc = $id(element.toc);
 
         if ($toc.length === 0) {
             var tocHtml = buildTableOfContentsHtmlCore();
             if (tocHtml) {
-                $body.append(tocHtml);
+                $main.append(tocHtml);
                 $toc = $id(element.toc);
             }
             if ($toc) {
-                show($toc, $body);
+                show($toc, $main);
             }
             return;
         }
 
         if ($toc.css("display") === "none") {
-            show($toc, $body);
+            show($toc, $main);
         } else {
-            hide($toc, $body);
+            hide($toc, $main);
         }
 
-        function show($toc, $body) {
+        function show($toc, $main) {
             var width = $toc.width();
-            if (width > 320) {
-                width = 320;
+            if (width > 230) {
+                width = 230;
             }
             $toc.css("display", "inline-block");
-            $body.css("padding-left", width + "px");
+            $body.css("padding-right", width + "px");
         }
 
         function hide($toc, $body) {
             $toc.css("display", "none");
-            $body.css("padding-left", 0);
+            $body.css("padding-right", 0);
         }
     }
 
@@ -187,7 +188,7 @@
         }
     }
 
-    window.lnh = {
+    window.sf = {
         fixedBar: {
             show: showFixedBarCore
         },
@@ -229,23 +230,23 @@
         }
     };
 
-    window.lnh.isMobile = function () {
+    window.sf.isMobile = function () {
         return navigator.userAgent.match(/.*Mobile.*/);
     };
 
-    window.lnh.addMobileCss = function () {
-        $id("home").before('<link href="//files.cnblogs.com/files/linianhui/lnh.cnblogs.mobile.css" rel="stylesheet">');
+    window.sf.addMobileCss = function () {
+        $id("home").before('<link href="//files.cnblogs.com/files/linianhui/sf.cnblogs.mobile.css" rel="stylesheet">');
     };
 
 })(window, document, navigator);
 
-if (lnh.isMobile()) {
-    lnh.addMobileCss();
-    lnh.toc.buildId();
-    lnh.run(lnh.post.copyCategoryAndTag);
+if (sf.isMobile()) {
+    sf.addMobileCss();
+    sf.toc.buildId();
+    sf.run(sf.post.copyCategoryAndTag);
 } else {
-    lnh.fixedBar.show();
-    lnh.toc.toggle();
-    lnh.toc.watchWindowScroll();
-    lnh.run(lnh.digg.move, lnh.post.copyCategoryAndTag);
+    sf.fixedBar.show();
+    sf.toc.toggle();
+    sf.toc.watchWindowScroll();
+    sf.run(sf.digg.move, sf.post.copyCategoryAndTag);
 }
