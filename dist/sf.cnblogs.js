@@ -23,7 +23,7 @@
         fixedBar.push('<div class="fixed-bar">');
 
         if ($id(element.postBody).length) {
-            fixedBar.push('<a class="item toc" href="javascript:lnh.toc.toggle();" title="目录"><i class="fa fa-hashtag"></i></a>');
+            fixedBar.push('<a class="item toc" href="javascript:sf.toc.toggle();" title="目录"><i class="fa fa-hashtag"></i></a>');
             fixedBar.push('<a class="item comments" href="#comment_form_container" title="评论列表"><i class="fa fa-comments"></i></a>');
             fixedBar.push('<a class="item comment" href="#comment_form" title="写评论"><i class="fa fa-pencil"></i></a>');
         }
@@ -102,7 +102,7 @@
         var tableOfContentsHtml = [];
 
         if (headerList.length) {
-            tableOfContentsHtml.push('<div id="' + element.toc + '" class="lnh_toc_warp">');
+            tableOfContentsHtml.push('<div id="' + element.toc + '" class="sf_toc_warp">');
             tableOfContentsHtml.push('<div class="title"># ' + getPostTitleCore() + '</div>');
             tableOfContentsHtml.push('<div class="toc">');
             for (var i = 0; i < headerList.length; i++) {
@@ -187,7 +187,7 @@
         }
     }
 
-    window.lnh = {
+    window.sf = {
         fixedBar: {
             show: showFixedBarCore
         },
@@ -229,23 +229,23 @@
         }
     };
 
-    window.lnh.isMobile = function () {
+    window.sf.isMobile = function () {
         return navigator.userAgent.match(/.*Mobile.*/);
     };
 
-    window.lnh.addMobileCss = function () {
-        $id("home").before('<link href="//files.cnblogs.com/files/linianhui/lnh.cnblogs.mobile.css" rel="stylesheet">');
+    window.sf.addMobileCss = function () {
+        $id("home").before('<link href="//files.cnblogs.com/files/linianhui/sf.cnblogs.mobile.css" rel="stylesheet">');
     };
 
 })(window, document, navigator);
 
-if (lnh.isMobile()) {
-    lnh.addMobileCss();
-    lnh.toc.buildId();
-    lnh.run(lnh.post.copyCategoryAndTag);
+if (sf.isMobile()) {
+    sf.addMobileCss();
+    sf.toc.buildId();
+    sf.run(sf.post.copyCategoryAndTag);
 } else {
-    lnh.fixedBar.show();
-    lnh.toc.toggle();
-    lnh.toc.watchWindowScroll();
-    lnh.run(lnh.digg.move, lnh.post.copyCategoryAndTag);
+    sf.fixedBar.show();
+    sf.toc.toggle();
+    sf.toc.watchWindowScroll();
+    sf.run(sf.digg.move, sf.post.copyCategoryAndTag);
 }
