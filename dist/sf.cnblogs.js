@@ -4,7 +4,7 @@
 
     var element = {
         body: document.body,
-		main: "main",
+	main: "main",
         postTitle: "cb_post_title_url",
         postBody: "cnblogs_post_body",
         postCategory: "BlogPostCategory",
