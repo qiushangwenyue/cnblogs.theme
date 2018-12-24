@@ -154,12 +154,12 @@
                 width = 230;
             }
             $toc.css("display", "inline-block");
-            $body.css("padding-right", width + "px");
+            $main.css("padding-right", width + "px");
         }
 
-        function hide($toc, $body) {
+        function hide($toc, $main) {
             $toc.css("display", "none");
-            $body.css("padding-right", 0);
+            $main.css("padding-right", 0);
         }
     }
 
