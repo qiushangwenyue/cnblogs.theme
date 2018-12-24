@@ -1,1 +1,1 @@
-sass --watch ./src/style/_.scss:./dist/lnh.cnblogs.css --cache-location .sass-cache
+sass --watch ./src/style/_.scss:./dist/sf.cnblogs.css --cache-location .sass-cache
