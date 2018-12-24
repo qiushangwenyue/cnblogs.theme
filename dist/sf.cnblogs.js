@@ -127,7 +127,7 @@
     }
 
     function toggleTableOfContentsCore() {
-        var $main = $(element.main);
+        var $main = $id(element.main);
         var $toc = $id(element.toc);
 
         if ($toc.length === 0) {
